@@ -1,0 +1,36 @@
+<h3>환영합니다 {{name}} 님</h3>
+<p>나의 이야기</p>
+{{#if stories}}
+<table class="striped">
+    <thead>
+        <tr>
+            <th>제목</th>
+            <th>날짜</th>
+            <th>상태</th>
+            <th></th>
+        </tr>
+    </thead>
+    {{#each stories}}
+    <tr>
+        <td><a href="/stories/{{_id}}">{{title}}</a></td>
+        <td>{{formatDate createdAt 'YYYY MM월 DD일 , h:mm:ss a'}}</td>
+        <td><span class="dash-status">{{status}}</span></td>
+        <td>
+            <a href="/stories/edit/{{_id}}" class="btn btn-float">
+                <i class="fas fa-edit"></i>
+            </a>
+
+            <form action="/stories/{{_id}}" method="POST" id="delete-form">
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="submit" class="btn red">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </form>
+        </td>
+    </tr>
+    {{/each}}
+</table>
+{{>_page}}
+{{else}}
+<p>아직 이야기가 존재하지 않군요. </p>
+{{/if}}

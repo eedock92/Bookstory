@@ -1,0 +1,42 @@
+<h6>독후감</h6>
+<h2>모두의 이야기</h2>
+
+{{>_search}}
+
+<div class="card_container">
+    {{#each stories}}
+    <div class="card_box">
+
+
+
+        <div class="card-content">
+
+
+
+            <h5>{{title}}</h5>
+            <p>{{stripTags (truncate body 150)}}</p>
+            <br>
+            <div class="chip">
+                <img src="{{user.image}}" alt="">
+                <a href="/stories/user/{{user._id}}">{{user.displayName}}</a>
+            </div>
+
+            <div class="card-action">
+                <a href="/stories/{{_id}}" class="btn grey">더 보기</a>
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+    <div class="edit_btn">
+        {{!-- todo: editIcon --}}
+        {{{editIcon user ../user _id}}}
+    </div>
+    {{else}}
+    <p>아직 이야기가 없습니다.</p>
+    {{/each}}
+</div>
+{{>_page}}
